@@ -9,7 +9,8 @@ app.use(body.urlencoded({extended:true}));
 app.use(expressSanitiz());
 app.use(express.static('files'));
 app.use(methodOverride("_method"));
-db.connect("mongodb://localhost/Blog");
+// db.connect("mongodb://localhost/Blog");
+db.connect("mongodb://devil:himanshu@ds159033.mlab.com:59033/blogs");
 
 var blogSchema=new db.Schema({
 	title:String,
