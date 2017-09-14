@@ -9,20 +9,27 @@ app.use(body.urlencoded({extended:true}));
 app.use(expressSanitiz());
 app.use(express.static('files'));
 app.use(methodOverride("_method"));
-<<<<<<< HEAD
-db.connect("mongodb://localhost/Blog");
+ // db.connect("mongodb://localhost/Blog");
 // db.connect("mongodb://username:password@ds159033.mlab.com:59033/blogs"); //to use mlabs database
-=======
 // db.connect("mongodb://localhost/Blog");
-db.connect("mongodb://devil:himanshu@ds159033.mlab.com:59033/blogs");
->>>>>>> 039decdfbd810144727e35c4dae7c93ddab552dd
+db.connect("mongodb://admin:12345@ds159033.mlab.com:59033/blogs");
 
+var commentSchema=new db.Schema({
+	content:String,
+	date:{type:Date,default:Date.now}
+});
+var comment=db.model('comment',commentSchema);
 var blogSchema=new db.Schema({
 	title:String,
 	Image:String,
 	body:String,
+	comments:[{
+		type:db.Schema.Types.ObjectId,
+		ref:"comment"
+	}],
 	date:{type:Date,default:Date.now}
 });
+
 var blog=db.model('blog',blogSchema);
 
 
@@ -131,7 +138,6 @@ app.delete('/blog/:id',function(req,res){
 			}
 			else
 			{
-				console.log(req.body.blog);
 				res.redirect('/');
 			}
 		});
