@@ -12,8 +12,6 @@ app.use(methodOverride("_method"));
  // db.connect("mongodb://localhost/Blog");
 // db.connect("mongodb://username:password@ds159033.mlab.com:59033/blogs"); //to use mlabs database
 // db.connect("mongodb://localhost/Blog");
-db.connect("mongodb://admin:12345@ds159033.mlab.com:59033/blogs");
-
 var commentSchema=new db.Schema({
 	content:String,
 	date:{type:Date,default:Date.now}
